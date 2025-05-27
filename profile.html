@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="navbar">
+
+        <div class="container">
+            <div class="nav">
+                <div class="logo">
+                    <p>Resident</p>
+                    <p>Cinemax</p>
+                </div>
+                <ul>
+                    <li><a href="/home.html">
+                            <h3>home</h3>
+                        </a></li>
+                    <li><a href="/nowplaying.html">
+                            <h3>now playing</h3>
+                        </a></li>
+                    <li><a href="/comingsoon.html">
+                            <h3>coming soon</h3>
+                        </a></li>
+                    <li><a href="/login.html">
+                            <h3>Login</h3>
+                        </a></li>
+                    <li><a href="/adminfilm.html">
+                            <h3>Admin</h3>
+                        </a></li>
+
+                    <li><a href="/profile.html">
+                            <h3>Profile</h3>
+                        </a></li>
+                </ul>
+                <div class="humberger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="wrapcards">
+            <div class="titlescinema">
+                <h1>Resident Cinemax</h1>
+                <p>Pemesanan Tiket Bioskop Online</p>
+                
+            </div>
+            <div class="wrapprofile">
+                <div class="wrapimage">
+                    <img src="./public/image/exhuma-4.jpg" alt="">
+                </div>
+                <div class="line1"></div>
+                <div class="wraptexts">
+                 <div class="textwrap1">
+    
+                     <p>Name : <b>LocalHost</b></p>
+                     <p>Email : <b>LocalHost@gmail.com</b></p>
+                 </div>
+                 <button>Edit</button>
+              
+                </div>
+            </div>
+        </div>
+    
+        <script src="script.js"></script>
+  <script>
+    let titles = document.querySelector(".titlescinema");
+    let profile = document.querySelector(".profile");
+    let wrapprofile = document.querySelector(".wrapprofile");
+
+      let humberger = document.querySelector(".humberger");
+let nav = document.querySelector(".nav ul")
+let item = document.querySelectorAll(".item1");
+let textNav = document.querySelectorAll(".nav ul li a")
+let spanHum = document.querySelectorAll(".humberger span")
+
+humberger.addEventListener("click",()=>{
+    nav.classList.toggle("active");
+    for (let i = 0; i < 3; i++) {
+        spanHum[i].classList.toggle("active")
+        
+    }
+})
+    profile.addEventListener("click",()=>{
+        titles.classList.toggle("active")
+        wrapprofile.classList.toggle("active")
+
+    
+    
+    })
+    
+  </script>
+</body>
+</html>

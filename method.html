@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Struk Pembelian Tiket Bioskop</title>
+     <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-mQ7lB6tzQd3ADmjq"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .receipt {
+            background-color: white;
+            width: 100%;
+            max-width: 350px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid #e63946;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .header h1 {
+            color: #e63946;
+            font-size: 24px;
+            margin: 5px 0;
+        }
+        
+        .header p {
+            margin: 3px 0;
+            font-size: 12px;
+            color: #555;
+        }
+        
+        .divider {
+            border-top: 1px dashed #ccc;
+            margin: 10px 0;
+        }
+        
+        .transaction-info {
+            margin-bottom: 15px;
+        }
+        
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .info-value {
+            color: #555;
+        }
+        
+        .movie-info {
+            margin: 15px 0;
+        }
+        
+        .movie-title {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .movie-detail {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        
+        .seat-info {
+            background-color: #f8f8f8;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        
+        .total {
+            font-weight: bold;
+            font-size: 16px;
+            text-align: right;
+            margin-top: 15px;
+            color: #e63946;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #777;
+        }
+        
+        .barcode {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .barcode img {
+            width: 150px;
+            height: 50px;
+            background-color: #eee;
+            /* Ganti dengan gambar barcode asli */
+        }
+    </style>
+</head>
+<body>
+    <div class="receipt">
+        <div class="header">
+            <h1>Resident Cinemax</h1>
+            <p>Jl. Bioskop No. 123, Jakarta</p>
+            <p>Telp: (021) 12345678</p>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="transaction-info">
+            <div class="info-row">
+                <span class="info-label">No. Transaksi:</span>
+                <span class="info-value">TRX202305261234</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Tanggal:</span>
+                <span class="info-value">26 Mei 2023</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Waktu:</span>
+                <span class="info-value">14:30 WIB</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Kasir:</span>
+                <span class="info-value">Budi</span>
+            </div>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="movie-info">
+            <div class="movie-title">AVATAR: THE WAY OF WATER</div>
+            <div class="movie-detail">
+                <span>Studio 5</span>
+                <span>13:00 WIB</span>
+            </div>
+            <div class="movie-detail">
+                <span>2D Digital</span>
+                <span>Durasi: 3h 12m</span>
+            </div>
+        </div>
+        
+        <div class="seat-info">
+            <div class="info-row">
+                <span class="info-label">Kursi:</span>
+                <span class="info-value">E12, E13</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Harga:</span>
+                <span class="info-value">Rp 50.000 x 2</span>
+            </div>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="transaction-info">
+            <div class="info-row">
+                <span class="info-label">Subtotal:</span>
+                <span class="info-value">Rp 100.000</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Diskon:</span>
+                <span class="info-value">Rp 10.000</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Pajak:</span>
+                <span class="info-value">Rp 5.000</span>
+            </div>
+        </div>
+        
+        <div class="total">
+            TOTAL: Rp 95.000
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="barcode">
+             <button id="pay-button">Bayar</button>
+        </div>
+        
+        <div class="footer">
+            <p>Terima kasih telah memesan di Cinema XXI</p>
+            <p>Tiket ini wajib dibawa saat masuk bioskop</p>
+            <p>www.cinema21.co.id</p>
+        </div>
+    </div>
+
+       
+  <div id="snap-container"></div>
+  <script type="text/javascript">
+    var payButton = document.getElementById('pay-button');
+    payButton.addEventListener('click', function () {
+      window.snap.pay('<%= token %>')
+    });
+  </script>
+</body>
+</html>

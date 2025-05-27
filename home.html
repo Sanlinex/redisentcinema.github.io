@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="navbar">
+
+        <div class="container">
+            <div class="nav">
+                <div class="logo">
+                    <p>Resident</p>
+                    <p>Cinemax</p>
+                </div>
+                <ul>
+                    <li><a href="/home.html">
+                            <h3>home</h3>
+                        </a></li>
+                    <li><a href="/nowplaying.html">
+                            <h3>now playing</h3>
+                        </a></li>
+                    <li><a href="/comingsoon.html">
+                            <h3>coming soon</h3>
+                        </a></li>
+                    <li><a href="/login.html">
+                            <h3>Login</h3>
+                        </a></li>
+                    <li><a href="/adminfilm.html">
+                            <h3>Admin</h3>
+                        </a></li>
+
+                    <li><a href="/profile.html">
+                            <h3>Profile</h3>
+                        </a></li>
+                </ul>
+                <div class="humberger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content1">
+        <div class="corasel">
+            <div class="item1 active">
+                <img src="./public/image/imgwb.jpg" alt="">
+                <div class="text2">
+                    <h2>Study Group</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque ullam recusandae quia
+                        necessitatibus explicabo deserunt aliquam quam reiciendis facere amet. Dolor maiores blanditiis
+                        porro, odio magni nisi corrupti rerum harum.</p>
+                </div>
+                <div class="text1 active">
+                    <button>View</button>
+                    <button>Buy Ticket</button>
+                </div>
+            </div>
+
+            <div class="item1">
+                <img src="./public/image/imgwb1.jpeg" alt="">
+                <div class="text2">
+                    <h2>Study Group</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque ullam recusandae quia
+                        necessitatibus explicabo deserunt aliquam quam reiciendis facere amet. Dolor maiores blanditiis
+                        porro, odio magni nisi corrupti rerum harum.</p>
+                </div>
+                <div class="text1">
+                    <button>View</button>
+                    <button>Buy Ticket</button>
+                </div>
+            </div>
+            <div class="item1">
+                <img src="./public/image/re6adawong.webp" alt="">
+                <div class="text2">
+                    <h2>Resident Evil Remake</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque ullam recusandae quia
+                        necessitatibus explicabo deserunt aliquam quam reiciendis facere amet. Dolor maiores blanditiis
+                        porro, odio magni nisi corrupti rerum harum.</p>
+                </div>
+                <div class="text1">
+                    <button>View</button>
+                    <button>Buy Ticket</button>
+                </div>
+            </div>
+            <div class="item1">
+                <img src="./public/image/AVG1.png" alt="">
+                <div class="text2">
+                    <h2>Marvel : The Avengers</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque ullam recusandae quia
+                        necessitatibus explicabo deserunt aliquam quam reiciendis </p>
+                </div>
+                <div class="text1">
+                    <button>View</button>
+                    <button>Buy Ticket</button>
+
+                </div>
+            </div>
+
+            <div class="btn1">
+                <i class="back">
+                    <</i>
+                        <i class="next">></i>
+            </div>
+        </div>
+
+    </div>
+    <div class="content2">
+
+        <div class="lg1">
+
+        </div>
+        <div class="container">
+            <div class="contentwrap1">
+                <div class="wrapcard1">
+
+
+
+
+                    <div class="card1">
+                        <img src="./public/image/Ada.jpg" alt="">
+                        <div class="categoriesAge">
+                            <p>18+</p>
+                        </div>
+                        <div class="text3">
+                            <div class="title">
+                                <h2>Resident Evil 5</h2>
+                            </div>
+
+                            <div class="btn2">
+                                <button><a href="/detail/<%= film.judul %>">View</a></button>
+                                <button><a href="/tiket/">Buy Ticket</a></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card1">
+                        <img src="./public/image/aot1.jpg" alt="">
+                        <div class="categoriesAge">
+                            <p>13+</p>
+                        </div>
+                        <div class="text3">
+                            <div class="title">
+                                <h2>Attack On Titan</h2>
+                            </div>
+
+                            <div class="btn2">
+                                <button><a href="/detail/<%= film.judul %>">View</a></button>
+                                <button><a href="/tiket/">Buy Ticket</a></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card1">
+                        <img src="./public/image/eternals.jpg" alt="">
+                        <div class="categoriesAge">
+                            <p>13+</p>
+                        </div>
+                        <div class="text3">
+                            <div class="title">
+                                <h2>The Eternals</h2>
+                            </div>
+
+                            <div class="btn2">
+                                <button><a href="/detail/<%= film.judul %>">View</a></button>
+                                <button><a href="/tiket/">Buy Ticket</a></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card1">
+                        <img src="./public/image/exhuma-4.jpg" alt="">
+                        <div class="categoriesAge">
+                            <p>13+</p>
+                        </div>
+                        <div class="text3">
+                            <div class="title">
+                                <h2>Exhuma</h2>
+                            </div>
+
+                            <div class="btn2">
+                                <button><a href="/detail/<%= film.judul %>">View</a></button>
+                                <button><a href="/tiket/">Buy Ticket</a></button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="wrapcontent4">
+
+                <div class="content4">
+                    <div class="mark1">
+                        <h2>Now Playing</h2>
+                        <a href="/nowplaying">See more</a>
+                    </div>
+                    <div class="wrapcard1">
+
+
+                        <div class="card1">
+                            <img src="./public/image/fastnforious.jpg" alt="">
+                            <div class="categoriesAge">
+                                <p>17+</p>
+                            </div>
+                            <div class="text3">
+                                <div class="title">
+
+                                    <h2>Fast And Forious</h2>
+                                </div>
+                                <div class="btn4">
+                                    <button><a href="/detail/<%= plays.judul %>">View</a></button>
+                                    <button><a href="">Buy Ticket</a></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card1">
+                            <img src="./public/image/tombraider.jpg" alt="">
+                            <div class="categoriesAge">
+                                <p>13+</p>
+                            </div>
+                            <div class="text3">
+                                <div class="title">
+
+                                    <h2>Tomb Raider</h2>
+                                </div>
+                                <div class="btn4">
+                                    <button><a href="/detail/<%= plays.judul %>">View</a></button>
+                                    <button><a href="">Buy Ticket</a></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card1">
+                            <img src="./public/image/CaptainMarvelPoster2019.jpg" alt="">
+                            <div class="categoriesAge">
+                                <p>16+</p>
+                            </div>
+                            <div class="text3">
+                                <div class="title">
+
+                                    <h2>Captain Marvel</h2>
+                                </div>
+                                <div class="btn4">
+                                    <button><a href="/detail/<%= plays.judul %>">View</a></button>
+                                    <button><a href="">Buy Ticket</a></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card1">
+                            <img src="./public/image/houseofdragon.jpg" alt="">
+                            <div class="categoriesAge">
+                                <p>17+</p>
+                            </div>
+                            <div class="text3">
+                                <div class="title">
+
+                                    <h2>House Of Dragons</h2>
+                                </div>
+                                <div class="btn4">
+                                    <button><a href="/detail/<%= plays.judul %>">View</a></button>
+                                    <button><a href="">Buy Ticket</a></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="wrapcontent5">
+
+                <div class="content5">
+                    <div class="mark1">
+                        <h2>Up Coming</h2>
+                        <a href="/upcoming">See more</a>
+                    </div>
+                    <div class="wrapcard1">
+
+
+                        <div class="card1">
+                            <img src="./public/image/drstrange.jpeg" alt="">
+                            <div class="categoriesAge">
+                                <p>13+</p>
+                            </div>
+                            <div class="text3">
+                                <div class="title">
+
+                                    <h2>Dr.Strange</h2>
+                                </div>
+                                <div class="btn4">
+                                    <button><a href="/detail/<%= up.judul %>">View</a></button>
+                                    <button><a href="">Buy Ticket</a></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card1">
+                            <img src="./public/image/godzila1.jpg" alt="">
+                            <div class="categoriesAge">
+                                <p>13+</p>
+                            </div>
+                            <div class="text3">
+                                <div class="title">
+
+                                    <h2>Godzilla X Kong</h2>
+                                </div>
+                                <div class="btn4">
+                                    <button><a href="/detail/<%= up.judul %>">View</a></button>
+                                    <button><a href="">Buy Ticket</a></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card1">
+                            <img src="./public/image/Transformers.jpeg" alt="">
+                            <div class="categoriesAge">
+                                <p>13+</p>
+                            </div>
+                            <div class="text3">
+                                <div class="title">
+
+                                    <h2>Transformers</h2>
+                                </div>
+                                <div class="btn4">
+                                    <button><a href="/detail/<%= up.judul %>">View</a></button>
+                                    <button><a href="">Buy Ticket</a></button>
+                                </div>
+                            </div>
+
+                        </div>
+                         <div class="card1">
+                            <img src="./public/image/wbsg1.jpg" alt="">
+                            <div class="categoriesAge">
+                                <p>13+</p>
+                            </div>
+                            <div class="text3">
+                                <div class="title">
+
+                                    <h2>Study Group</h2>
+                                </div>
+                                <div class="btn4">
+                                    <button><a href="/detail/<%= up.judul %>">View</a></button>
+                                    <button><a href="">Buy Ticket</a></button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <div class="wrapcontent8">
+
+             <div class="footer">
+    <div class="container">
+
+        <div class="wrapfoot">
+    
+            <div class="logos1">
+                <p><b>Resident</b></p>
+                <p>Cinemax</p>
+                
+            </div>
+            <div class="wrapfooter">
+                <ul>
+                    <li>
+                       <a href="/home.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="">Privacy & Policy</a>
+                    </li>
+                    <li>
+                        <a href="">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+            </div>
+
+            <script src="./public/js/script.js"></script>
+</body>
+
+</html>

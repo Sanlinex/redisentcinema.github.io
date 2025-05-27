@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Film - Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --primary-light: #e6f0fd;
+            --secondary-color: #3f37c9;
+            --success-color: #4cc9f0;
+            --warning-color: #f8961e;
+            --danger-color: #f72585;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --gray-color: #6c757d;
+            --light-gray: #e9ecef;
+            --white: #ffffff;
+            --sidebar-width: 250px;
+            --sidebar-collapsed-width: 80px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--white);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-header h2 i {
+            font-size: 1.4rem;
+        }
+
+        .toggle-btn {
+            background: transparent;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--gray-color);
+            cursor: pointer;
+            display: none;
+        }
+
+        .sidebar-menu {
+            flex: 1;
+            padding: 20px 0;
+            list-style: none;
+        }
+
+        .sidebar-menu li a {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: var(--gray-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .sidebar-menu li a:hover {
+            background: var(--primary-light);
+            color: var(--primary-color);
+        }
+
+        .sidebar-menu li a.active {
+            background: var(--primary-light);
+            color: var(--primary-color);
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .sidebar-menu li a i {
+            margin-right: 10px;
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar-menu li a span {
+            transition: var(--transition);
+        }
+
+        .sidebar-footer {
+            padding: 15px;
+            border-top: 1px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .user-info h4 {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .user-info small {
+            font-size: 0.7rem;
+            color: var(--gray-color);
+        }
+
+        .logout-btn {
+            color: var(--gray-color);
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .logout-btn:hover {
+            color: var(--danger-color);
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            transition: var(--transition);
+            margin-left: 0;
+        }
+
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header-title {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-header h1 {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+
+        .breadcrumb a {
+            color: var(--gray-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-color);
+        }
+
+        .breadcrumb a.active {
+            color: var(--dark-color);
+            font-weight: 500;
+        }
+
+        .breadcrumb span {
+            color: var(--gray-color);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Button Styles */
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-sm {
+            padding: 5px 10px;
+            font-size: 0.8rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-color);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--gray-color);
+            color: var(--gray-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--light-gray);
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .card-header h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        /* Form Styles */
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            flex: 1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-hint {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--gray-color);
+            margin-top: 5px;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        /* File Upload Styles */
+        .file-upload {
+            margin-top: 8px;
+        }
+
+        .file-upload-preview {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .file-upload-preview img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 5px;
+            border: 1px solid var(--light-gray);
+        }
+
+        /* Video Preview Styles */
+        .video-preview {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .video-preview iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Tabs Styles */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--light-gray);
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: var(--transition);
+        }
+
+        .tab.active {
+            border-bottom: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .sidebar {
+                position: fixed;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                z-index: 1000;
+            }
+            
+            .main-content {
+                margin-left: var(--sidebar-width);
+            }
+            
+            .toggle-btn {
+                display: block;
+            }
+            
+            .sidebar.collapsed {
+                width: var(--sidebar-collapsed-width);
+            }
+            
+            .sidebar.collapsed .sidebar-header h2 span,
+            .sidebar.collapsed .sidebar-menu li a span,
+            .sidebar.collapsed .user-info {
+                display: none;
+            }
+            
+            .sidebar.collapsed .sidebar-menu li a {
+                justify-content: center;
+            }
+            
+            .sidebar.collapsed .sidebar-menu li a i {
+                margin-right: 0;
+                font-size: 1.3rem;
+            }
+            
+            .sidebar.collapsed .sidebar-footer {
+                justify-content: center;
+            }
+            
+            .sidebar.collapsed .user-profile img {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .sidebar.collapsed .logout-btn {
+                display: none;
+            }
+            
+            .main-content.collapsed {
+                margin-left: var(--sidebar-collapsed-width);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .header-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .sidebar {
+                width: 100%;
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.collapsed {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .card-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-film"></i> <span>FilmAdmin</span></h2>
+                <button class="toggle-btn" id="toggle-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="#">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="active">
+                        <i class="fas fa-video"></i>
+                        <span>Movies</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-list"></i>
+                        <span>Categories</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-users"></i>
+                        <span>Users</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User">
+                    <div class="user-info">
+                        <h4>Admin User</h4>
+                        <small>Super Admin</small>
+                    </div>
+                </div>
+                <a href="#" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+               <a href="/admin/film">
+                <div class="header-actions">
+                    <button class="btn btn-outline" id="back-btn">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                </div>
+                </a>
+            </header>
+
+            <div class="content">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Movie Information</h3>
+                    </div>
+                    
+                    <div class="card-body">
+                        <% data.forEach(das => { %>
+                        <form id="edit-movie-form" action="/admin/film/edit/<%= das.id %>" method="post" enctype="multipart/form-data">
+                                
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="movie-title">Judul Film*</label>
+                                    <input type="text" id="movie-title" name="judul" value="<%= das.judul %>" required>
+                                </div>
+                               
+                                <div class="form-group">
+                                    <label for="movie-status">Status</label>
+                                    <select id="movie-status" name="status">
+                                        <option value="playing" selected>Sedang Main</option>
+                                        <option value="upcoming">Segera Datang</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="duration">Durasi (Jam)</label>
+                                    <input type="number" id="duration" name="durasi" value="<%= das.durasi %>">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="duration">Umur</label>
+                                    <input type="number" id="duration" name="umur" value="<%= das.umur %>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="movie-description">Description</label>
+                                <textarea id="movie-description" rows="5" name="deskripsi" value="<%= das.deskripsi %>">When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.</textarea>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Poster Image</label>
+                                    <div class="file-upload">
+                                        <div class="file-upload-preview">
+                                           
+                                            <button type="button" class="btn btn-sm btn-outline" id="change-poster-btn">
+                                            <i class="fas fa-exchange-alt"></i> Change Poster <input type="file" name="image" id="image" value="<%= das.image %>">
+                                           
+                                     
+                                        </div>
+                                      
+                                    </div>
+                                </div>
+                               
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="youtube-trailer">YouTube Trailer URL</label>
+                                <input type="url" id="youtube-trailer" name="trailer_link" value="<%= das.trailer_link %>" placeholder="https://www.youtube.com/watch?v=...">
+                                
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-outline" id="cancel-edit">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </form>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+  
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+     <div class="navbar">
+
+        <div class="container">
+            <div class="nav">
+                <div class="logo">
+                    <p>Resident</p>
+                    <p>Cinemax</p>
+                </div>
+                <ul>
+                    <li><a href="/home.html">
+                            <h3>home</h3>
+                        </a></li>
+                    <li><a href="/nowplaying.html">
+                            <h3>now playing</h3>
+                        </a></li>
+                    <li><a href="/comingsoon.html">
+                            <h3>coming soon</h3>
+                        </a></li>
+                    <li><a href="/login.html">
+                            <h3>Login</h3>
+                        </a></li>
+                    <li><a href="/adminfilm.html">
+                            <h3>Admin</h3>
+                        </a></li>
+
+                    <li><a href="/profile.html">
+                            <h3>Profile</h3>
+                        </a></li>
+                </ul>
+                <div class="humberger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wraplogin">
+        <div class="wrapform1">
+            <div class="wrapform3">
+                <div class="text4">
+
+                    <h1>Welcome To Resident Cinemax</h1>
+                    <h2 class="titleswap1">Let`s Register Now</h2>
+                    <button class="bregister">Register</button>
+                </div>
+            </div>
+            <div class="wrapform2 active">
+
+                <h1>Log In</h1>
+                <form action="/login" method="post">
+                
+                    <input type="text" name="email" id="email" required>
+                    <label for="email">Email</label>
+                    <input type="password" name="password" id="password" required>
+                    <label for="password">Password</label>
+                    <hr>
+                    <button type="submit" class="blogin">Log In</button>
+                  
+                     <i class="fa-solid fa-arrow-right-arrow-left" id="arow"></i>
+                </form>
+            </div>
+
+            <div class="wrapform5">
+             
+                <h1>Register</h1>
+                
+                <form action="/register" method="post">
+                    
+                    
+                    <input type="text" name="name" id="name" required>
+                    <label for="name">Name</label>
+                    <input type="email" name="email" id="email" required>
+                    <label for="email">Email</label>
+                    <input type="password" name="password" id="password" required>
+                    <label for="password">Password</label>
+                    <hr>
+                    <button type="submit" class="blogin">Regist</button>
+                   
+                        <i class="fa-solid fa-arrow-right-arrow-left" id="arow"></i>
+                 
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+const bregister = document.getElementsByClassName("bregister")[0];
+const titleswap1 = document.getElementsByClassName("titleswap1")[0];
+const arrow = document.getElementById('arow');
+let wrapform2 = document.getElementsByClassName("wrapform2")[0]
+let wrapform5 = document.getElementsByClassName("wrapform5")[0]
+  let humberger = document.querySelector(".humberger");
+let nav = document.querySelector(".nav ul")
+let item = document.querySelectorAll(".item1");
+let textNav = document.querySelectorAll(".nav ul li a")
+let spanHum = document.querySelectorAll(".humberger span")
+
+humberger.addEventListener("click",()=>{
+    nav.classList.toggle("active");
+    for (let i = 0; i < 3; i++) {
+        spanHum[i].classList.toggle("active")
+        
+    }
+})
+arrow.addEventListener("click",()=>{
+   wrapform2.classList.toggle("active")
+wrapform5.classList.toggle("active")
+    
+    
+})
+
+        bregister.addEventListener("click",()=>{
+    wrapform3.classList.toggle("active")
+    
+    
+    if(wrapform3.className == "wrapform3 active"){
+        bregister.textContent = "Login"
+         titleswap1.textContent = "Let`s Login Now"
+ 
+       
+    }else{
+     bregister.textContent = "Register"
+     titleswap1.textContent = "Let`s Register Now"
+         
+    }
+ })
+ 
+    </script>
+</body>
+</html>
+
+
+
+
+
+   

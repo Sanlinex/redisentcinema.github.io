@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <body>
+    <div class="dashboard-container">
+      
+           
+ <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>Residence Cinemax</h3>
+                <button class="toggle-btn" id="sidebar-toggle">
+                    <div class="humberger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+                </button>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="/dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="/adminfilm.html"><i class="fas fa-film"></i> Film</a></li>
+                <li><a href="/genre.html"><i class="fas fa-tags"></i> Genre</a></li>
+                <li><a href="/admin/pengguna"><i class="fas fa-users"></i> Pengguna</a></li>
+                <li><a href="#"><i class="fas fa-chart-pie"></i> Analitik</a></li>
+                <li><a href="/adminjadwal.html"><i class="fas fa-calendar-alt"></i> Jadwal</a></li>
+                <li><a href="/admin/theater"><i class="fa-solid fa-users-between-lines"></i>Theater</a></li>
+                <li><a href="/home.html"><i class="fas fa-sign-out-alt"></i> Keluar</a></li>
+            </ul>
+        </aside>
+    
+        <main class="main-content">
+            <div class="header">
+                <h1>Manajemen <span>Film</span></h1>
+                <div class="user-profile">
+                    <img src="/image/Ada.jpg" alt="Admin">
+                    <div class="user-info">
+                        <h4>Sarah Johnson</h4>
+                        <p>Administrator</p>
+                    </div>
+                </div>
+            </div>
+
+ 
+            <div class="stats-grid">
+                <a href="/adminfilm.html" style="text-decoration: none;">
+                <div class="stat-card">
+                    <div class="stat-icon films">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <div class="stat-info">
+                      
+                         <h3>2</h3>
+                    
+                        <p>Total Film</p>
+                    </div>
+                </div>
+                </a>
+                  <a href="/genre.html" style="text-decoration: none;">
+               
+                    <div class="stat-card">
+                    <div class="stat-icon genres">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>4</h3>
+                        <p>Genre Film</p>
+                    </div>
+                </div>
+             
+                </a>
+                  <a href="/admin/pengguna" style="text-decoration: none;">
+                <div class="stat-card">
+                    <div class="stat-icon users">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>2,489</h3>
+                        <p>Total Pengguna</p>
+                    </div>
+                </div>
+               </a>
+                 <a href="/adminjadwal.html" style="text-decoration: none;">
+                <div class="stat-card">
+                    <div class="stat-icon views">
+                      <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>1</h3>
+                        <p>Jadwal Tayang</p>
+                    </div>
+                </div>
+                </a>
+            </div>
+
+       
+            <div class="card">
+                <div class="card-header">
+                    <h3>Daftar Pesanan Tiket</h3>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Judul</th>
+                            <th>Jam Tayang</th>
+                            <th>Tanggal</th>
+                            <th>Status</th>
+                            <th>Total Tiket</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                     <tr>
+                        <td>1</td>
+                        <td>Balleon</td>
+                        <td>Exhuma</td>
+                        <td>21:30</td>
+                        <td>03-03-03</td>
+                        <td>Pending</td>
+                        <td>5</td>
+                        
+                     </tr>
+                      
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+  
+    <div class="modal" id="film-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Tambah Film Baru</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="film-form" action="/admin/film" method="post" enctype="multipart/form-data">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="film-title">Judul Film</label>
+                            <input type="text" id="film-title" class="form-control" name="judul" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="film-year">Harga</label>
+                            <input type="number" id="film-year" class="form-control" name="harga" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="film-genre">Genre</label>
+                        <select id="film-genre" class="form-control" name="genre" required>
+                            <option value="action">Action</option>
+                            <option value="adventure">Adventure</option>
+                            <option value="comedy">Comedy</option>
+                            <option value="drama">Drama</option>
+                            <option value="horror">Horror</option>
+                            <option value="sci-fi">Sci-Fi</option>
+                            <option value="thriller">Thriller</option>
+                            <option value="romance">Romance</option>
+                            <option value="animation">Animation</option>
+                            <option value="crime">Crime</option>
+                            <option value="fantasy">Fantasy</option>
+                            <option value="mystery">Mystery</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="film-rating">Durasi</label>
+                            <input type="number" id="film-rating" name="durasi" class="form-control" min="0" max="10" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="film-status">Status</label>
+                            <select id="film-status" class="form-control" name="status" required>
+                                <option value="playing">Sedang Tayang</option>
+                                <option value="upcoming">Akan Datang</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="film-poster">Poster Film (URL)</label>
+                        <input type="file" id="film-poster" class="form-control" name="image" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="film-trailer">Umur</label>
+                        <input type="text" id="film-trailer" class="form-control" name="umur" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="film-description">Deskripsi</label>
+                        <textarea id="film-description" class="form-control" rows="5" name="deskripsi" required></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" type="submit">Simpan Film</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        const mainContent = document.querySelector('.main-content');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+
+  
+        const addFilmBtn = document.getElementById('add-film-btn');
+        const editFilmBtns = document.querySelectorAll('.edit-btn');
+        const filmModal = document.getElementById('film-modal');
+        const closeModalBtns = document.querySelectorAll('.close-modal');
+        const saveFilmBtn = document.getElementById('save-film');
+        const modalTitle = document.getElementById('modal-title');
+  let humberger = document.querySelector(".humberger");
+
+humberger.addEventListener("click",()=>{
+        sidebar.classList.toggle(" active");
+})
+  
+        addFilmBtn.addEventListener('click', () => {
+            modalTitle.textContent = 'Tambah Film Baru';
+            document.getElementById('film-form').reset();
+            filmModal.classList.add('show');
+            filmModal.style.display = 'flex';
+            
+     
+            $('#film-genre').select2({
+                placeholder: "Pilih genre",
+                width: '100%',
+                dropdownParent: $('#film-modal')
+            });
+            
+            setTimeout(() => {
+                filmModal.querySelector('.modal-content').style.transform = 'translateY(0)';
+                filmModal.querySelector('.modal-content').style.opacity = '1';
+            }, 10);
+        });
+
+  
+        editFilmBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                modalTitle.textContent = 'Edit Film';
+         
+                filmModal.classList.add('show');
+                filmModal.style.display = 'flex';
+                
+           
+                $('#film-genre').select2({
+                    placeholder: "Pilih genre",
+                    width: '100%',
+                    dropdownParent: $('#film-modal')
+                });
+                
+                setTimeout(() => {
+                    filmModal.querySelector('.modal-content').style.transform = 'translateY(0)';
+                    filmModal.querySelector('.modal-content').style.opacity = '1';
+                }, 10);
+            });
+        });
+
+
+        function closeModal() {
+            filmModal.querySelector('.modal-content').style.transform = 'translateY(-20px)';
+            filmModal.querySelector('.modal-content').style.opacity = '0';
+            
+            setTimeout(() => {
+                filmModal.classList.remove('show');
+                filmModal.style.display = 'none';
+            }, 300);
+        }
+
+        closeModalBtns.forEach(btn => {
+            btn.addEventListener('click', closeModal);
+        });
+
+     
+        window.addEventListener('click', (e) => {
+            if (e.target === filmModal) {
+                closeModal();
+            }
+        });
+
+
+        saveFilmBtn.addEventListener('click', () => {
+
+            alert('Film berhasil disimpan!');
+            closeModal();
+        });
+
+
+        function handleResponsive() {
+            if (window.innerWidth <= 992) {
+                sidebar.classList.remove('active');
+            } else {
+                sidebar.classList.add('active');
+            }
+        }
+
+        window.addEventListener('resize', handleResponsive);
+        handleResponsive();
+    </script>
+</body>
+</body>
+</html>

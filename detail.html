@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resident Cinemax</title>
+   <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<%- include("layouts/navbar.ejs")  %>
+
+    <div class="content6">
+        <% data.forEach(datas => { %>
+      <iframe width="100%" height="100%" src="<%= datas.trailer_link %>" allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="opacity: 0.3;"></iframe>
+      <div class="shdw"></div>
+        <div class="card2">
+            <img class="upimage" src="/image/<%= datas.image %>" alt="">
+            <div class="text4">
+                <h1>Title : <%= datas.judul %></h1>
+                <p><b>Genre :</b> <%= datas.genre %></p>
+                <p><b>Description :</b> <%= datas.deskripsi %></p>
+               
+               <div class="btn3">
+                   <button><a href="<%= datas.trailer_link %>">Full Trailer</a></button>
+               </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="title2">
+      
+            <div class="categoryAge">
+            <%= datas.umur %>+
+            </div>
+          
+        <span></span>
+        <p><b>Duration</b>: <%= datas.durasi %> Jam</p>
+    </div>
+  <% }); %>
+    <div class="content7">
+        <div class="wrapcard2">
+            <div class="container">
+                <div class="wrapcard3">
+
+   
+     <% data.forEach(es => { %>
+        <form action="/pay" method="POST">
+
+            <div class="card3">
+                            <h2>Title : <%= es.judul %> </h2>
+                            <div class="isiPesanan">
+        
+                                <p>Jumlah Tiket </p>
+                                <div class="jumlahtiket">
+                                    <button id="btnmin">-</button>
+                                    <input type="number" id="jumlahtiketing" name="quantity">
+                                    <button id="btnplus">+</button>
+                                </div>
+                                <p>Jam Tayang</p>
+                                <div class="jumlahjamtayang">
+                                 
+                                    <% jadwal.forEach(exa => { %>
+                                         <input type="radio" id="<%= exa.jamtayang %>" name="jamtayang">
+                                     <label for="<%= exa.jamtayang %>"><%= exa.jamtayang %></label>
+                               
+                                   <% }); %>
+                                   
+                                   <input type="hidden" name="hargaaseli" id="hargaaseli" value="<%= es.harga %>">
+                                </div>
+                            </div>
+                            <div class="pesantotal">
+                                <span><h3 id="totalharga"></h3></span>
+                                <button type="submit">Buy Ticket</button>
+                            </div>
+                        </div>
+    
+                        
+                        
+                       
+                    </div>
+                </div>
+            </div>
+        </form>
+    <% }); %>
+    </div>   
+ 
+
+    <script src="js/script.js"></script>
+    <script>
+        let humberger = document.querySelector(".humberger");
+let nav = document.querySelector(".nav ul")
+let next = document.querySelector(".btn1 .next");
+let back = document.querySelector(".btn1 .back");
+let item = document.querySelectorAll(".item1");
+let active = 0;
+let textNav = document.querySelectorAll(".nav ul li a")
+let spanHum = document.querySelectorAll(".humberger span")
+let text1 = document.querySelectorAll(".text1");
+let titles = document.querySelector(".titlescinema");
+let profile = document.querySelector(".profile");
+
+let btnmin= document.getElementById("btnmin");
+let btnplus = document.getElementById("btnplus");
+let totalharga = document.getElementById("totalharga");
+let jumlahtiketing = document.getElementById("jumlahtiketing");
+let hargaaseli = document.getElementById("hargaaseli");
+let totalTiket = 1;
+let hargatiket = parseInt(hargaaseli.value);
+jumlahtiketing.value = totalTiket;
+
+
+
+const currency = new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+  })
+
+
+totalharga.innerHTML =  currency.format(totalTiket * hargatiket)
+
+btnplus.addEventListener("click",()=>{
+    totalTiket++
+    jumlahtiketing.value = totalTiket
+    totalharga.innerHTML = currency.format(totalTiket * hargatiket)
+    if(totalTiket === 30){
+        totalTiket = 1;
+        jumlahtiketing.value = totalTiket
+        totalharga.innerHTML = currency.format(totalTiket * hargatiket)
+    }
+})
+
+btnmin.addEventListener("click",()=>{
+    totalTiket--
+    jumlahtiketing.value = totalTiket
+    totalharga.innerHTML =  currency.format(totalTiket * hargatiket)
+    if(totalTiket === 0){
+        totalTiket = 1;
+        jumlahtiketing.value = totalTiket
+        totalharga.innerHTML = currency.format(totalTiket * hargatiket)
+    }
+})
+
+
+humberger.addEventListener("click",()=>{
+    nav.classList.toggle("active");
+    for (let i = 0; i < 3; i++) {
+        spanHum[i].classList.toggle("active")
+        
+    }
+})
+
+    </script>
+</body>
+</html>

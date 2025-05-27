@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+      
+      <%- include('layouts/sidebar') %>
+
+    
+        <main class="main-content">
+            <div class="header">
+                <h1>Manajemen <span>Film</span></h1>
+                <div class="user-profile">
+                    <img src="/image/Ada.jpg" alt="">
+                    <div class="user-info">
+                        <h4>Sarah Johnson</h4>
+                        <p>Administrator</p>
+                    </div>
+                </div>
+            </div>
+            
+
+       
+            <div class="card">
+                <div class="card-header">
+                    <h3>Daftar Film</h3>
+                    <button class="btn btn-primary" id="add-film-btn">
+                        <i class="fas fa-plus"></i> Tambah Genre
+                    </button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>No Telp</th>
+                            <th>Total Pemesanan</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      
+                      
+                         <tr>
+                            <td>1</td>
+                           <td>Bryan Iluminate</td>
+                            <td>Bryan@gmail.com</td>
+                          <td>08374666253</td>
+                          <td>220 Ticket</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-outline btn-sm edit-btn">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    <form action="/admin/film/" method="post">
+
+                                        <button class="btn btn-danger btn-sm" type="submit">
+                                            <i class="fas fa-trash"></i> Hapus
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                
+                      
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+  
+    <div class="modal" id="film-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Tambah Genre Baru</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="film-form" action="/admin/film" method="post" enctype="multipart/form-data">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="film-title">Category Name</label>
+                            <input type="text" id="film-title" class="form-control" name="genre" required>
+                        </div>
+                        
+                    </div>
+                  
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" type="submit">Simpan Film</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        const mainContent = document.querySelector('.main-content');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+
+  
+        const addFilmBtn = document.getElementById('add-film-btn');
+        const editFilmBtns = document.querySelectorAll('.edit-btn');
+        const filmModal = document.getElementById('film-modal');
+        const closeModalBtns = document.querySelectorAll('.close-modal');
+        const saveFilmBtn = document.getElementById('save-film');
+        const modalTitle = document.getElementById('modal-title');
+
+        // Open Add Film Modal
+        addFilmBtn.addEventListener('click', () => {
+            modalTitle.textContent = 'Tambah Genre baru';
+            document.getElementById('film-form').reset();
+            filmModal.classList.add('show');
+            filmModal.style.display = 'flex';
+            
+            // Initialize Select2
+            $('#film-genre').select2({
+                placeholder: "Pilih genre",
+                width: '100%',
+                dropdownParent: $('#film-modal')
+            });
+            
+            setTimeout(() => {
+                filmModal.querySelector('.modal-content').style.transform = 'translateY(0)';
+                filmModal.querySelector('.modal-content').style.opacity = '1';
+            }, 10);
+        });
+
+  
+        editFilmBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                modalTitle.textContent = 'Edit Film';
+         
+                filmModal.classList.add('show');
+                filmModal.style.display = 'flex';
+                
+                // Initialize Select2
+                $('#film-genre').select2({
+                    placeholder: "Pilih genre",
+                    width: '100%',
+                    dropdownParent: $('#film-modal')
+                });
+                
+                setTimeout(() => {
+                    filmModal.querySelector('.modal-content').style.transform = 'translateY(0)';
+                    filmModal.querySelector('.modal-content').style.opacity = '1';
+                }, 10);
+            });
+        });
+
+
+        function closeModal() {
+            filmModal.querySelector('.modal-content').style.transform = 'translateY(-20px)';
+            filmModal.querySelector('.modal-content').style.opacity = '0';
+            
+            setTimeout(() => {
+                filmModal.classList.remove('show');
+                filmModal.style.display = 'none';
+            }, 300);
+        }
+
+        closeModalBtns.forEach(btn => {
+            btn.addEventListener('click', closeModal);
+        });
+
+     
+        window.addEventListener('click', (e) => {
+            if (e.target === filmModal) {
+                closeModal();
+            }
+        });
+
+        // Save Film
+        saveFilmBtn.addEventListener('click', () => {
+
+            alert('Film berhasil disimpan!');
+            closeModal();
+        });
+
+
+        function handleResponsive() {
+            if (window.innerWidth <= 992) {
+                sidebar.classList.remove('active');
+            } else {
+                sidebar.classList.add('active');
+            }
+        }
+
+        window.addEventListener('resize', handleResponsive);
+        handleResponsive();
+    </script>
+</body>
+</html>
+
+
+
+
+ 
